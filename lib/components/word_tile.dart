@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:memory_game/animation/flip_animation.dart';
 import 'package:memory_game/animation/matched_animation.dart';
@@ -13,8 +12,8 @@ class WordTile extends StatelessWidget {
   const WordTile({
     required this.index,
     required this.word,
-    Key? key, required void Function() onCorrectAnswer,
-  }) : super(key: key);
+    super.key, required void Function() onCorrectAnswer,
+  });
 
   final int index;
   final Word word;
@@ -74,8 +73,10 @@ class WordTile extends StatelessWidget {
           height: 100,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
-            print('Error loading image: $error');
-            return Icon(Icons.error);
+            if (kDebugMode) {
+              print('Error loading image: $error');
+            }
+            return const Icon(Icons.error);
           },
         );
       } else {
@@ -94,13 +95,15 @@ class WordTile extends StatelessWidget {
                 height: 100,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
-                  print('Error loading image: $error');
-                  return Icon(Icons.error);
+                  if (kDebugMode) {
+                    print('Error loading image: $error');
+                  }
+                  return const Icon(Icons.error);
                 },
               );
             } else {
               // Display a loading indicator while loading the image
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
           },
         );
@@ -113,7 +116,9 @@ class WordTile extends StatelessWidget {
       String base64Image = word.url!;
       return base64Decode(base64Image);
     } catch (e) {
-      print('Error decoding image: $e');
+      if (kDebugMode) {
+        print('Error decoding image: $e');
+      }
       rethrow; // Rethrow the error for proper error handling
     }
   }

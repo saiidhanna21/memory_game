@@ -7,7 +7,7 @@ import 'package:memory_game/animation/spin_animation.dart';
 const messages = ['Awesome!', 'Fantastic!', 'Nice!', 'Great!'];
 
 class ReplayPopUp extends StatelessWidget {
-  const ReplayPopUp({Key? key}) : super(key: key);
+  const ReplayPopUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class ReplayPopUp extends StatelessWidget {
                     Navigator.pushAndRemoveUntil(
                         context,
                         PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => MyApp()),
+                            pageBuilder: (_, __, ___) => const MyApp()),
                         (route) => false);
                   },
                   child: const Padding(

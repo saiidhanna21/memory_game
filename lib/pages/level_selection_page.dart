@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:memory_game/pages/game_page.dart';
 
 class LevelSelectionPage extends StatelessWidget {
-  const LevelSelectionPage({Key? key}) : super(key: key);
+  const LevelSelectionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class LevelSelectionPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => GamePage(level: 1),
+                    builder: (context) => const GamePage(level: 1),
                   ),
                 );
               },
@@ -30,7 +30,7 @@ class LevelSelectionPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => GamePage(level: 2),
+                    builder: (context) => const GamePage(level: 2),
                   ),
                 );
               },
@@ -41,7 +41,7 @@ class LevelSelectionPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => GamePage(level: 3),
+                    builder: (context) => const GamePage(level: 3),
                   ),
                 );
               },

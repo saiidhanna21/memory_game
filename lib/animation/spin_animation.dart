@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SpinAnimation extends StatefulWidget {
-  const SpinAnimation({required this.child, Key? key}) : super(key: key);
+  const SpinAnimation({required this.child, super.key});
 
   final Widget child;
 

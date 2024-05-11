@@ -2,7 +2,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
 class ConfettiAnimation extends StatefulWidget {
-  const ConfettiAnimation({required this.animate, Key? key}) : super(key: key);
+  const ConfettiAnimation({required this.animate, super.key});
 
   final bool animate;
 

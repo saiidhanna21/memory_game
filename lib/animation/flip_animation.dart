@@ -9,8 +9,7 @@ class FlipAnimation extends StatefulWidget {
       required this.reverse,
       required this.animationCompleted,
       this.delay = 0,
-      Key? key})
-      : super(key: key);
+      super.key});
 
   final Widget word;
   final bool animate;

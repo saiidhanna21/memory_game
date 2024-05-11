@@ -3,8 +3,8 @@ import 'package:memory_game/theme/app_theme.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

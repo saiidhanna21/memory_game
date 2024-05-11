@@ -5,8 +5,7 @@ class MatchedAnimation extends StatefulWidget {
       {required this.child,
       required this.animate,
       required this.numberOfWordsAnswered,
-      Key? key})
-      : super(key: key);
+      super.key});
 
   final Widget child;
   final bool animate;
@@ -21,6 +20,7 @@ class _MatchedAnimationState extends State<MatchedAnimation>
   late AnimationController _controller;
   late Animation<double> _shake, _scale;
 
+  // ignore: prefer_final_fields
   Color _defaultColor = Colors.blueAccent, _correctColor = Colors.green;
   bool _correctColorIsSet = false;
 

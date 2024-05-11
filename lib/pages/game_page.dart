@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:memory_game/animation/confetti_animation.dart';
 import 'package:memory_game/components/replay_popup.dart';
@@ -15,15 +14,16 @@ import 'package:provider/provider.dart';
 class GamePage extends StatefulWidget {
   final int level;
 
-  const GamePage({Key? key, required this.level}) : super(key: key);
+  const GamePage({super.key, required this.level});
 
   @override
   State<GamePage> createState() => _GamePageState();
 }
 
 class _GamePageState extends State<GamePage> {
+  // ignore: prefer_typing_uninitialized_variables
   late final _futureCachedImages;
-  List<Word> _gridWords = [];
+  final List<Word> _gridWords = [];
   late int _currentLevel;
   late int _totalPairs; // Variable to track total number of pairs
 
@@ -61,10 +61,8 @@ class _GamePageState extends State<GamePage> {
 
               WidgetsBinding.instance.addPostFrameCallback(
                 (timeStamp) async {
-                  print('Should show popup: $roundCompleted');
                   if (roundCompleted ||
                       gameManager.answeredWords.length == _totalPairs) {
-                    print('Showing replay popup');
                     await showDialog(
                       barrierColor: Colors.transparent,
                       barrierDismissible: false,
@@ -102,10 +100,7 @@ class _GamePageState extends State<GamePage> {
                         ),
                         itemBuilder: (context, index) => WordTile(
                           index: index,
-                          word: _gridWords[index],
-                          onCorrectAnswer: () {
-                            print('Correct answer found!');
-                          },
+                          word: _gridWords[index], onCorrectAnswer: () {  },
                         ),
                       ),
                     ),
@@ -156,7 +151,9 @@ class _GamePageState extends State<GamePage> {
           // Update the Word object with the decoded image bytes
           w.imageBytes = bytes;
         } catch (e) {
-          print('Error decoding image: $e');
+          if (kDebugMode) {
+            print('Error decoding image: $e');
+          }
         }
       }
     }

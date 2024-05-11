@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 final appTheme = ThemeData(
     textTheme: TextTheme(
-      bodyText2: textStyle,
+      bodyMedium: textStyle,
     ),
     dialogTheme: DialogTheme(
       backgroundColor: Colors.blueAccent,

@@ -76,7 +76,6 @@ Future<int> populateSourceWords() async {
           displayText: false,
         ));
       }
-
       return 1;
     } else {
       throw Exception('Failed to load data');
