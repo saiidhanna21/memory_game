@@ -33,6 +33,8 @@ class _GamePageState extends State<GamePage> {
     _currentLevel = widget.level;
     _totalPairs = _getLevelSettings().rows *
         _getLevelSettings().columns; // Calculate total pairs
+    final gameManager = Provider.of<GameManager>(context, listen: false);
+    gameManager.totalPairs = _totalPairs;
     _setUp(_getLevelSettings()); // Set up based on selected level
     super.initState();
   }

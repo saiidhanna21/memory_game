@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:memory_game/managers/game_manager.dart';
@@ -18,32 +19,31 @@ void main() {
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight])
       .then((_) {
-    runApp(MyApp());
+    runApp(const MyApp());
   });
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: populateSourceWords(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return LoadingPage();
+          return const LoadingPage();
         } else if (snapshot.hasError) {
-          return ErrorPage();
+          return const ErrorPage();
         } else {
           // Determine the total pairs based on the number of sourceWords
-          int x = sourceWords.length;
-          print("length: $x");
-          int totalPairs = sourceWords.length ~/ 2;
           return ChangeNotifierProvider(
-            create: (_) => GameManager(totalPairs), // Pass totalPairs here
+            create: (_) => GameManager(), // Pass totalPairs here
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Memory Game',
               theme: appTheme,
-              home: LevelSelectionPage(),
+              home: const LevelSelectionPage(),
             ),
           );
         }
@@ -82,7 +82,9 @@ Future<int> populateSourceWords() async {
       throw Exception('Failed to load data');
     }
   } catch (e) {
-    print('Error fetching data: $e');
+    if (kDebugMode) {
+      print('Error fetching data: $e');
+    }
     throw Exception('Failed to load data');
   }
 }
